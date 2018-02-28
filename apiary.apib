@@ -1,0 +1,70 @@
+FORMAT: 1A
+
+# Project Management API
+Demo API with MSON Data Structures
+
+Basic Project Management including tasks and team members
+
+## Projects [/projects]
+A project is a named collection of tasks
+ 
+### List all Projects [GET]
+- Response 200 (application/json)
+    - Attributes (array[Project], fixed-type)
+
+## Project [/projects/{id}]
+    
+### Retrieve a Project [GET]
+- Response 200 (application/json)
+    - Attributes (Project)
+
+## Tasks [/tasks]
+A task can have a team member assigned to it.
+It can also be complete or incomplete
+
+### List all Tasks [GET]
+- Response 200 (application/json)
+    - Attributes (array[Task], fixed-type)
+
+## Task [/tasks/{id}]
+    
+### Retrieve a Task [GET]
+- Response 200 (application/json)
+    - Attributes (Task)
+
+## Team Members [/teammembers]
+A Team Member inherits from a User
+ 
+### List all Team Members [GET]
+- Response 200 (application/json)
+    - Attributes (array[TeamMember], fixed-type)
+
+## TeamMember [/teammembers/{id}]
+
+### Retrieve a Team Member [GET]
+- Response 200 (application/json)
+    - Attributes (TeamMember)
+
+# Data Structures   
+
+## Project
+- id: 84 (number, required) - Uniquely identifies project
+- name: Shopping Trip (nullable) - Name of project
+- tasks (array[Task], fixed-type)
+
+## Task
+- id: 42 (number, required) - Uniquely identifies task
+- title: Buy Milk (string, nullable) - Task title
+- complete: false (boolean) - Completion Status
+- assignee (TeamMember)
+- items: low fat, half and half, `lactose-free`
+
+## TeamMember
+- team: Shoppers (required) - Team name
+- role: Dairy Section (nullable) - Role name
+- Include User
+
+## User
+- id: 21 (number, required) - Uniquely identifies user
+- name: Emmanuel Paraskakis (string, required) - Name of user
+- email: emmanuel.paraskakis@oracle.com (string, required) - User email
